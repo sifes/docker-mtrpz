@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sifes/architecture-practice-4-template/httptools"
-	"github.com/sifes/architecture-practice-4-template/signal"
+	"github.com/sifes/docker-mtrpz/httptools"
+	"github.com/sifes/docker-mtrpz/signal"
 )
 
 var (
@@ -32,7 +32,7 @@ var (
 		"server3:8080",
 	}
 	healthyServers = make([]bool, len(serversPool))
-	mut             sync.Mutex
+	mut            sync.Mutex
 )
 
 func scheme() string {

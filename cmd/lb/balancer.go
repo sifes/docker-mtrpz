@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sifes/docker-mtrpz/httptools"
-	"github.com/sifes/docker-mtrpz/signal"
+	"github.com/sifes/architecture-practice-4-template/httptools"
+	"github.com/sifes/architecture-practice-4-template/signal"
 )
 
 var (
@@ -32,7 +32,7 @@ var (
 		"server3:8080",
 	}
 	healthyServers = make([]bool, len(serversPool))
-	mut            sync.Mutex
+	mut             sync.Mutex
 )
 
 func scheme() string {
@@ -51,14 +51,6 @@ func health(dst string) bool {
 		return false
 	}
 	if resp.StatusCode != http.StatusOK {
-		err := resp.Body.Close()
-		if err != nil {
-			return false
-		}
-		return false
-	}
-	err2 := resp.Body.Close()
-	if err2 != nil {
 		return false
 	}
 	return true
@@ -150,7 +142,6 @@ func main() {
 		err := forward(server, rw, r)
 		if err != nil {
 			log.Printf("Failed to forward request: %s", err)
-			log.Println("Starting load balancer on port", *port)
 		}
 	}))
 

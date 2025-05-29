@@ -1,0 +1,7 @@
+FROM golang:1.24 AS build
+
+WORKDIR /go/src/docker-mtrpz
+COPY . .
+
+ENV INTEGRATION_TEST=1
+ENTRYPOINT ["go", "test", "./integration"]
